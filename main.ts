@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { setFlagsFromString } from 'node:v8';
 
-setFlagsFromString('--no-incremental-marking --no-turbofan --no-concurrent-recompilation');
+setFlagsFromString('--no-incremental-marking --max-semi-space-size=64 --invocation-count-for-osr=20000 --no-concurrent-recompilation');
 
 const { run } = (await import(new URL('./solve.js', import.meta.url).href)) as { run: (input: unknown) => unknown };
 
